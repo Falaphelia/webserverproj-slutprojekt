@@ -71,7 +71,7 @@ def register():
 def about():
     return render_template("about.html", title="About")
 
-@app.route("/to-do", methods=['GET', 'POST'])
+@app.route("/to-do")
 def to_do():
 
     if session.get("user_id"):
