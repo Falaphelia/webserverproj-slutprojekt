@@ -52,7 +52,7 @@ def register_user(f_name, l_name, email, password):
     created_at = int(time.time())
 
     if match_user_email(email):
-        return
+        return False
 
     with get_connection() as conn:
         cursor = conn.cursor()
@@ -67,6 +67,8 @@ def register_user(f_name, l_name, email, password):
         cursor.execute("INSERT INTO credentials (target_uid, hashed_password) VALUES (?,?)",
                        (uid, hashed))
         conn.commit()
+        return True
+
 
 def match_user_email(email):
     with get_connection() as conn:
