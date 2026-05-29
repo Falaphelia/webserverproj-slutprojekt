@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/to_do.css">
+{% endblock %}
+
+{% block content %}
+    <h1 id="page-title">To-do</h1>
+    <p class="page-message">This is where your personal to-do lists are!</p>
+    <p class="page-message">Create your to-do lists below, and check them off on your own time</p>
+    <p class="page-message">Learn more about how to use this page on our
+        <a class="page-link" href="{{ url_for('about') }}">about page</a></p>
+
+    <h1 style="text-align: center; border: outset; padding: 10px;">Your Lists beneath!</h1>
+
+    {% for list in lists %}
+
+        <h2 class="list-name">{{ list.name }}</h2>
+
+        <form method="POST" action="/delete-list">
+            <input type="hidden" name="list_id" value="{{ list.list_id }}">
+            <button type="submit" class="form-button list-delete-button">Delete List '{{ list.name }}'</button>
+        </form>
+
+        <h3>Add Entry</h3>
+
+    <form method="POST" action="/create-entry">
+
+        <input
+            type="hidden"
+            name="list_id"
+            value="{{ list.list_id }}"
+        >
+
+        <input
+            type="text"
+            name="content"
+            placeholder="Title"
+            required
+        >
+
+        <input
+            type="text"
+            name="description"
+            placeholder="Description"
+        >
+
+        <button type="submit" class="form-button">Add Entry</button>
+
+        </form>
+
+        {% for entry in list.entries %}
+
+            <div style="display: flex; width: 100%;">
+
+            <p>{{ entry.title }}: {{ entry.description }}</p>
+
+            <form method="POST" action="/delete-entry" style="margin-left: auto; margin-right: 15px;">
+                <input type="hidden" name="entry_id" value="{{ entry.entry_id }}">
+                <button type="submit" class="form-button">Delete Entry</button>
+            </form>
+
+            </div>
+
+        {% endfor %}
+
+    {% endfor %}
+
+    <h2>Create New List</h2>
+
+    <form method="POST" action="/create-list">
+        <input
+            type="text"
+            name="list_name"
+            placeholder="List name"
+            required
+        >
+
+        <button type="submit" class="form-button">Create List</button>
+    </form>
+
+{% endblock %}

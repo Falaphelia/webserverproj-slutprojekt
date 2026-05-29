@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/about.css">
+{% endblock %}
+
+{% block content %}
+    <h1 id="page-title">About</h1>
+    <p class="page-message">Here you can learn how to use the app!</p>
+    {% if not session.get('user_id') %}
+        <p class="page-message">Got an account? Log in on our <a class="page-link" href="{{ url_for('login') }}">Login Page</a>,
+        or create an account <a class="page-link" href="{{ url_for('register') }}">Here!</a></p>
+    {% endif %}
+
+    <div>
+      <ul>
+        <li>A quick overview:
+          <ul>
+            <li><b>To use the to-do list, you first need an account:</b></li>
+            <li>Create an account in account registration. It is linked above.</li>
+            <li>Login to your newly created account in the login screen.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <ul>
+        <li>If you are logged in, then great! Now go to To-Do and we'll continue from there:
+          <ul>
+            <li>To create a list, enter its desired name under "Create New List" and press the button "Create List".</li>
+            <li>To delete a list, click on the big green delete button. This button also states the name of the list, make sure you are deleting the correct list!</li>
+            <li>To create an entry to your list, define its name and description under "Add Entry" and click "Add Entry".</li>
+            <li>Done with your entry and want to get rid of it? Simply click the green delete button to the right!</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+{% endblock %}

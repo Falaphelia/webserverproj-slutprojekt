@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/base.css">
+
+    {% block head %}
+    {% endblock %}
+
+    <title>{{ title }}</title>
+
+
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <ul>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            {% if session.get('user_id') %}
+                <li><a href="{{ url_for('to_do') }}">To-do List</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+
+    <main id="content">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div>&copy; 2026 Simon Karlsson</div>
+    </footer>
+
+</body>
+</html>

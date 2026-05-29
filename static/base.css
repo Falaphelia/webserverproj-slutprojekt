@@ -1,0 +1,96 @@
+body {
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: aquamarine;
+}
+
+#navbar ul{
+    display: flex;
+    text-decoration: none;
+    background-color: aquamarine;
+    list-style: none;
+    padding: 5px;
+    margin: 0px;
+
+}
+
+#navbar ul li {
+    float: left;
+}
+
+#navbar ul li a {
+    display: block;
+    padding: 15px;
+    border-style: inset;
+    border-radius: 10px;
+    background-color: cadetblue;
+    text-decoration: none;
+}
+
+#navbar ul li:first-child {
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+#navbar ul li:last-child {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+#page-title, .page-message {
+    text-align: center;
+    background-color: brown;
+    margin: 0px;
+    padding: 5px;
+}
+
+#content {
+    min-height: 300px;
+    background-color: cadetblue;
+    margin: 0px;
+}
+
+.input-field {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.input-form {
+    background-color: lightsalmon;
+    padding: 15px;
+    border-radius: 15%;
+}
+
+.form-button {
+    background-color: aquamarine;
+}
+
+.page-link {
+    text-decoration: none;
+    border-radius: 15%;
+    border-width: 1px;
+    border-style: outset;
+    background-color: aquamarine;
+    padding: 2px;
+    color: black;
+}
+
+.page-link:hover {
+    background-color: cadetblue;
+}
+
+.page-link:active {
+    background-color: aqua;
+}
+
+footer div {
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-style: outset;
+    background-color: brown;
+    padding: 10px;
+    margin: 0px;
+}

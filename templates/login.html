@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 id="page-title">Login</h1>
+    <p class="page-message">Login below!</p>
+    <p class="page-message">Do you not have an account yet?
+        Visit our <a class="page-link" href="{{ url_for('register') }}">Registration page!</a></p>
+
+
+    <section class="input-field" id="login-field">
+        <form method="POST" class="input-form">
+            <label for="email">Enter E-Mail:</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                <br>
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                <br>
+            <button class="form-button" type="submit">Login</button>
+        </form>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 id="page-title">Make your Account!</h1>
+    <p class="page-message">Here you can create your account!<br><br>Click <a class="page-link" href="{{ url_for('login') }}">Here</a> to return to the login page!</p>
+
+    <section class="input-field" id="register-field">
+        <form method="POST" class="input-form">
+            <label for="names">Enter Name:</label>
+            <input type="text" id="names" name="first_name" placeholder="Enter first name" required>
+            <input type="text" id="names" name="last_name" placeholder="Enter last name(s)" required>
+                <br>
+            <label for="email">Enter E-Mail:</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                <br>
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                <br>
+            <button class="form-button" type="submit">Register</button>
+        </form>
+    </section>
+
+
+{% endblock %}

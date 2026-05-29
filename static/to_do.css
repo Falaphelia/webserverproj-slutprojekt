@@ -1,0 +1,12 @@
+.list-name {
+    text-align: center;
+    border: outset;
+    padding: 10px;
+}
+
+.list-delete-button {
+    display: block;
+    padding: 10px;
+    width: 30%;
+    margin: auto;
+}
