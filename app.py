@@ -57,7 +57,11 @@ def register():
         if not all_requirements:
             flash("All requirements not inputed as required", "error")
 
-        db.register_user(f_name, l_name, email, password)
+        answer = db.register_user(f_name, l_name, email, password)
+
+        if not answer:
+            flash("User registration failed! An account with this email may already exist or our servers are" \
+            " experiencing trouble, please try again soon.", "error")
 
         return redirect(url_for("login"))
 
