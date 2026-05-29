@@ -24,7 +24,7 @@ def login():
         password = request.form.get("password")
 
         uid = db.login(email, password)
-        print("uid: ", uid)
+
         if not uid:
             flash("Account not found. Perhaps you typed something wrong?", "error")
             return redirect(url_for("login"))
@@ -143,6 +143,6 @@ def delete_entry_route():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=81, debug=True)
+    app.run(host="0.0.0.0", port=81, debug=False)
     #Set 'debug=True' to 'debug=False' when putting into production // at submit
-    #Set port to standard 8080 or alternative.
+    #Set port to 81 instead of standard in case another service is using :80
