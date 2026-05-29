@@ -94,3 +94,35 @@ footer div {
     padding: 10px;
     margin: 0px;
 }
+
+.flash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+
+    pointer-events: none; /* allows clicks through except message */
+}
+
+.flash {
+    margin-top: 10px;
+    padding: 12px 20px;
+
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+
+    border-radius: 8px;
+
+    color: white;
+    font-weight: 500;
+
+    pointer-events: auto; /* so you can interact if needed */
+}
+
+.flash.error {
+    color: #ff4d4d;
+}
