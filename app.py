@@ -74,9 +74,6 @@ def about():
 @app.route("/to-do", methods=['GET', 'POST'])
 def to_do():
 
-    if session.get("user_id") and request.method == "POST":
-        pass
-
     if session.get("user_id"):
 
         # get all the user's lists
