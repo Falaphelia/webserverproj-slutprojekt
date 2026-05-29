@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import database as db
 
 db.init_db() #Make sure database exists / create tables and file if not.
@@ -26,6 +26,7 @@ def login():
         uid = db.login(email, password)
         print("uid: ", uid)
         if not uid:
+            flash("Account not found. Perhaps you typed something wrong?", "error")
             return redirect(url_for("login"))
         elif isinstance(uid, str):
             session["user_id"] = uid
@@ -50,6 +51,11 @@ def register():
         l_name = request.form.get("last_name")
         email = request.form.get("email").lower()
         password = request.form.get("password")
+
+        all_requirements = f_name and l_name and email and password
+
+        if not all_requirements:
+            flash("All requirements not inputed as required", "error")
 
         db.register_user(f_name, l_name, email, password)
 
@@ -82,6 +88,10 @@ def create_list_route():
 
     list_name = request.form["list_name"]
 
+    if not list_name:
+        flash("List name cannot be empty", "error")
+        return redirect(url_for("to_do"))
+
     db.create_list(
         list_name,
         session["user_id"]
@@ -103,31 +113,30 @@ def create_entry_route():
 @app.route("/delete-list", methods=["POST"])
 def delete_list_route():
 
-    db.delete_list(
+    answer = db.delete_list(
         session["user_id"],
         request.form["list_id"]
     )
+
+    if not answer:
+        flash("You are not allowed to delete this list!", "error")
 
     return redirect(url_for("to_do"))
 
 @app.route("/delete-entry", methods=["POST"])
 def delete_entry_route():
 
-    db.delete_list_entry(
+    answer = db.delete_list_entry(
         session["user_id"],
         request.form["entry_id"]
     )
 
+    if not answer:
+        flash("You are not allowed to delete this entry!", "error")
+
     return redirect(url_for("to_do"))
 
 
-
-
-@app.route("/force-login")
-def force_login():
-    if debug_mode:
-        session["user_id"] = "Forced-Login-User"
-    return redirect(url_for("index"))
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=81, debug=True)
