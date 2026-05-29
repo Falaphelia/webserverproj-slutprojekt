@@ -150,7 +150,7 @@ def delete_list(uid, list_id):
         if not owned_list:
             return False
 
-        # Delete entries first
+        # Delete entries first to make sure there are no ghosts / unreferenced entries
         cursor.execute(
             "DELETE FROM list_items WHERE target_list = ?",
             (list_id,)
